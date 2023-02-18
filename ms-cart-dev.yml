@@ -1,6 +1,32 @@
 server:
   port: ${PORT:0}
 
+spring:
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        '[show_sql]': true
+        '[use_sql_comments]': false
+        '[format_sql]': false
+        '[event.merge.entity_copy_observer]': allow
+    show-sql: true
+  sql:
+    init:
+      mode: always
+      platform: sql
+
 configuration:
     texto: Configurando entorno Desarrollo ...
     autor:
