@@ -1,0 +1,8 @@
+server:
+  port: ${PORT:0}
+
+configuration:
+    texto: Configurando entorno Desarrollo ...
+    autor:
+        nombre: John Doe
+        email: johndoe@email.com
