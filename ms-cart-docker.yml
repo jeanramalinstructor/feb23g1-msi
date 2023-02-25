@@ -83,7 +83,7 @@ resilience4j:
         base-config: defecto
         
 configuration:
-    texto: Configurando entorno Desarrollo ...
+    texto: Configurando entorno Docker ...
     autor:
         nombre: John Doe
         email: johndoe@email.com
