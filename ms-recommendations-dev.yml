@@ -1,0 +1,70 @@
+server:
+  port: ${PORT:0}
+
+spring:
+  
+  cloud:
+  
+    bus:
+      enabled: true
+      destination: springCloudBus
+    
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: event:com.codearti.model.event.ItemAddedToCartEvent
+  
+  boot:
+    admin:
+      client:
+        enabled: true
+  
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 4.0.2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+      
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+eureka:
+  client:
+    enabled: true
+    initial-instance-info-replication-interval-seconds: 5
+    registry-fetch-interval-seconds: 5
+
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+
+springdoc:
+  title: "Recommendations Api"
+  description: "Api for Recommendations"
+  version: "v1.0.0"
+  contact-name: "Jean Ramal"
+  contact-email: "jean.ramal@codearti.com"
+  contact-url: "https://www.codearti.com"
+  swagger-ui:
+    path: /swagger-ui.html
